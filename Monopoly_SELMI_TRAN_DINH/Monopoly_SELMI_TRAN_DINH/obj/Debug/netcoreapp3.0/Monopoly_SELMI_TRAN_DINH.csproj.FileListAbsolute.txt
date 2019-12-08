@@ -1,0 +1,11 @@
+/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/netcoreapp3.0/Monopoly_SELMI_TRAN_DINH
+/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/netcoreapp3.0/Monopoly_SELMI_TRAN_DINH.deps.json
+/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/netcoreapp3.0/Monopoly_SELMI_TRAN_DINH.runtimeconfig.json
+/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/netcoreapp3.0/Monopoly_SELMI_TRAN_DINH.runtimeconfig.dev.json
+/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/netcoreapp3.0/Monopoly_SELMI_TRAN_DINH.dll
+/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/netcoreapp3.0/Monopoly_SELMI_TRAN_DINH.pdb
+/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/obj/Debug/netcoreapp3.0/Monopoly_SELMI_TRAN_DINH.csprojAssemblyReference.cache
+/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/obj/Debug/netcoreapp3.0/Monopoly_SELMI_TRAN_DINH.AssemblyInfoInputs.cache
+/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/obj/Debug/netcoreapp3.0/Monopoly_SELMI_TRAN_DINH.AssemblyInfo.cs
+/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/obj/Debug/netcoreapp3.0/Monopoly_SELMI_TRAN_DINH.dll
+/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/obj/Debug/netcoreapp3.0/Monopoly_SELMI_TRAN_DINH.pdb

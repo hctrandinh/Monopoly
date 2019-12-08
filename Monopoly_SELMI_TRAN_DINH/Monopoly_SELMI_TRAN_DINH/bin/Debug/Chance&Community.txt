@@ -1,0 +1,6 @@
+7,Chance
+22,Chance
+36,Chance
+2,Community
+17,Community
+33,Community

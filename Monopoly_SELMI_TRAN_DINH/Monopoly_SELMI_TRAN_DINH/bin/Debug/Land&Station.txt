@@ -1,0 +1,26 @@
+1,Mediteranean Avenue,60,Brown
+3,Baltic Avenue,60,Brown
+5,Reading Railroad,200,Station
+6,Oriental Avenue,100,Cyan
+8,Vermont Avenue,100,Cyan
+9,Connecticut Avenue,120,Cyan
+11,St. Charles Place,140,Rose
+13,States Avenue,140,Rose
+14,Virginia Avenue,160,Rose
+15,Pennsylvania Railroad,200,Station
+16,St. James Avenue,180,Orange
+18,Tenessee Avenue,180,Orange
+19,New York Avenue,200,Orange
+21,Kentucky Avenue,220,Red
+23,Indiana Avenue,220,Red
+24,Illinois Avenue,240,Red
+25,B. & O. Railroad,200,Station
+26,Atlantic Avenue,260,Yellow
+27,Ventnor Avenue,260,Yellow
+29,Marvin Gardens,280,Yellow
+31,Pacific Avenue,300,Green
+32,North Carolina Avenue,300,Green
+34,Pennsylvania Avenue,320,Green
+35,Short Line,200,Station
+37,Park Place,350,Blue
+39,BoardWalk,400,Blue

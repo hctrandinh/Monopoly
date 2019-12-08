@@ -1,0 +1,2 @@
+4,Income Tax,200
+38,Luxury Tax,100
