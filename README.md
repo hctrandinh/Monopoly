@@ -42,7 +42,7 @@ class TaxeFactory : CasesFactory
             return case_taxe;
         }
     }
-    ```
+```
 ### SINGLETON  
 A singelton is a Creational design pattern , a singleton class should have some properties :  
   
@@ -69,7 +69,7 @@ private static Board instance;//Singleton
             }
             return instance;
         }
-        ```
+```
 ### OBSERVER  
   
 The ***observer pattern*** is a software ***design pattern*** in which an object, called the subject, maintains a list of its dependents, called ***observers***, and notifies them automatically of any state changes, usually by calling one of their methods.  
@@ -99,7 +99,7 @@ The observer is here to make the updates while the concrete observer, inheriting
                 observer.Update(this);
             }
         }
-        ```
+```
   
 ## Conclusion  
   
