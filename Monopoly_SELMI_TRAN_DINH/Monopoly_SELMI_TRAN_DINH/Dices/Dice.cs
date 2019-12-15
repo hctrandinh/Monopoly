@@ -11,7 +11,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Dices
 
         public bool check_value()
         {
-            if(value >= 1 && value <= 6)
+            if (value >= 1 && value <= 6)
             {
                 return true;
             }

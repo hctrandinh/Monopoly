@@ -3,12 +3,14 @@ using Monopoly_SELMI_TRAN_DINH.Players;
 using Monopoly_SELMI_TRAN_DINH.Dices;
 using Monopoly_SELMI_TRAN_DINH.Board_Monopoly;
 using Monopoly_SELMI_TRAN_DINH.Cards;
+using System.IO;
+
 namespace Monopoly_SELMI_TRAN_DINH.Gameplay
 {
     public class Gaming
     {
         private Player[] list;
-        Board monopoly = new Board();
+        Board monopoly = Board.Instance();
         Rolling two_dices = new Rolling();
         Chance chance_cards = new Chance();
         Community community_cards = new Community();
@@ -16,6 +18,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
         private int[] tax_cases = new int[2];
         private int[] cc_cases = new int[6];
         private int[] company_cases = new int[2];
+        ConcreteBank bank = new ConcreteBank(100000);
 
         public Gaming()
         {
@@ -27,7 +30,8 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
         {
             string line;
             int pos = 0;
-            System.IO.StreamReader file = new System.IO.StreamReader("/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Land&Station.txt");
+            string dir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
+            System.IO.StreamReader file = new System.IO.StreamReader(dir + "/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Land&Station.txt");
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split(',');
@@ -37,7 +41,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
             file.Close();
 
             pos = 0;
-            file = new System.IO.StreamReader("/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Tax.txt");
+            file = new System.IO.StreamReader(dir + "/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Tax.txt");
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split(',');
@@ -47,7 +51,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
             file.Close();
 
             pos = 0;
-            file = new System.IO.StreamReader("/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Chance&Community.txt");
+            file = new System.IO.StreamReader(dir + "/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Chance&Community.txt");
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split(',');
@@ -57,7 +61,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
             file.Close();
 
             pos = 0;
-            file = new System.IO.StreamReader("/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Company.txt");
+            file = new System.IO.StreamReader(dir + "/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Company.txt");
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split(',');
@@ -69,9 +73,9 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
 
         public int check_case_type(int val)
         {
-            foreach(int element in buyable_cases)
+            foreach (int element in buyable_cases)
             {
-                if(val == element)
+                if (val == element)
                 {
                     return 1;
                 }
@@ -106,24 +110,25 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
             Console.WriteLine("Welcome to the Monopoly Game!\n");
             Console.WriteLine("How many players?");
             int nb = int.Parse(Console.ReadLine());
-            while(nb < 1 || nb > 5)
+            while (nb < 1 || nb > 5)
             {
                 Console.WriteLine("Please choose between 1 and 5 players.");
                 nb = int.Parse(Console.ReadLine());
             }
             list = new Player[nb];
-            for(int index = 0; index < nb; index++)
+            for (int index = 0; index < nb; index++)
             {
                 list[index] = new Player(tokens);
+                bank.Attach(new ConcreteObserver(list[index]));
             }
         }
 
         public int get_player_id(string name)
         {
             int count = 0;
-            foreach(Player element in list)
+            foreach (Player element in list)
             {
-                if(element.name == name)
+                if (element.name == name)
                 {
                     return count;
                 }
@@ -137,9 +142,9 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
         {
             string color = monopoly.board[position].get_col();
             int count = 0;
-            foreach(Case element in monopoly.board)
+            foreach (Case element in monopoly.board)
             {
-                if(element.get_p_o() == list[player_id].name && element.get_col() == color)
+                if (element.get_p_o() == list[player_id].name && element.get_col() == color)
                 {
                     count++;
                 }
@@ -168,7 +173,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
                 Console.ReadLine();
                 Dice[] res = two_dices.roll_dices();
                 Console.WriteLine("Dice res: " + (res[0].value + res[1].value));
-                if(monopoly.board[12].get_p_o() == list[player_id].name && monopoly.board[28].get_p_o() == list[player_id].name)
+                if (monopoly.board[12].get_p_o() == list[player_id].name && monopoly.board[28].get_p_o() == list[player_id].name)
                 {
                     Console.WriteLine("You got to someone's company, he possesses both, " +
                         "you pay 10 times the dices results: " + ((res[0].value + res[1].value) * 10));
@@ -196,8 +201,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
             else
             {
                 int multiplier = 1;
-                Console.WriteLine("Number of land with this color possessed by player: " + color_count(player_id, position));
-                if(color_count(player_id, position) == 3)
+                if (color_count(player_id, position) == 3)
                 {
                     multiplier = 2;
                 }
@@ -213,10 +217,10 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
         {
             int type = check_case_type(position);
             Console.WriteLine("Type: " + type);
-            if(type == 1)
+            if (type == 1)
             {
                 Console.WriteLine("Lands&Stations action...");
-                if(monopoly.board[position].get_p_o() != "" && monopoly.board[position].get_p_o() != list[player_id].name)
+                if (monopoly.board[position].get_p_o() != "" && monopoly.board[position].get_p_o() != list[player_id].name)
                 {
                     pay_rent(player_id, position);
                 }
@@ -229,11 +233,12 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
             {
                 Console.WriteLine("Tax action...");
                 list[player_id].starting_money -= monopoly.board[position].get_pr();
+                bank._Stock += monopoly.board[position].get_pr();
             }
             else if (type == 3)
             {
                 Console.WriteLine("Cards action...");
-                if(monopoly.board[position].get_nm() == "Chance")
+                if (monopoly.board[position].get_nm() == "Chance")
                 {
                     chance_cards.draw_and_play_card(list[player_id], list);
                     Console.WriteLine("// " + list[player_id].position_number + " " + monopoly.board[list[player_id].position_number].get_nm());
@@ -270,11 +275,11 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
 
         public bool jailed(Player player)
         {
-            if(player.time_in_jail_left == 0)
+            if (player.time_in_jail_left == 0)
             {
                 player.jailed = false;
             }
-            if(!player.jailed)
+            if (!player.jailed)
             {
                 return false;
             }
@@ -285,23 +290,24 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
         {
             Console.WriteLine("You're in jail, here are your options:\n1: Pay 50$\n2: Roll dices and try getting 3 doubles\n3:Use free card\n");
             int choice = int.Parse(Console.ReadLine());
-            while(choice != 1 && choice != 2 && choice != 3)
+            while (choice != 1 && choice != 2 && choice != 3)
             {
                 Console.WriteLine("You're in jail, here are your options:\n1: Pay 50$\n2: Roll dices and try getting 3 doubles\n3:Use free card\n");
                 choice = int.Parse(Console.ReadLine());
             }
-            if(choice == 1)
+            if (choice == 1)
             {
                 player.time_in_jail_left = 0;
                 player.jailed = false;
                 player.starting_money -= 50;
+                bank._Stock += 50;
             }
             if (choice == 2)
             {
                 Dice[] res = two_dices.roll_dices();
                 Dice[] res1 = two_dices.roll_dices();
                 Dice[] res2 = two_dices.roll_dices();
-                if(res[0].value == res[1].value && res1[0].value == res1[1].value && res2[0].value == res2[1].value)
+                if (res[0].value == res[1].value && res1[0].value == res1[1].value && res2[0].value == res2[1].value)
                 {
                     player.time_in_jail_left = 0;
                     player.jailed = false;
@@ -309,7 +315,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
             }
             if (choice == 3)
             {
-                if(player.freedom)
+                if (player.freedom)
                 {
                     player.time_in_jail_left = 0;
                     player.jailed = false;
@@ -327,14 +333,14 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
             Console.WriteLine("Your money: " + list[player_id].starting_money);
             Console.WriteLine("Do you want to buy: " + monopoly.board[position].get_nm() + "? y/n");
             string choice = Console.ReadLine();
-            while(choice != "y" && choice != "n")
+            while (choice != "y" && choice != "n")
             {
                 Console.WriteLine("Do you want to buy: " + monopoly.board[position].get_nm() + "? y/n");
                 choice = Console.ReadLine();
             }
-            if(choice == "y")
+            if (choice == "y")
             {
-                if(list[player_id].starting_money > monopoly.board[position].get_pr())
+                if (list[player_id].starting_money > monopoly.board[position].get_pr())
                 {
                     if (list[player_id].position_number == 5 || list[player_id].position_number == 15 || list[player_id].position_number == 25
                         || list[player_id].position_number == 35)
@@ -343,6 +349,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
                     }
                     Console.WriteLine("Your money before paying: " + list[player_id].starting_money);
                     list[player_id].starting_money -= monopoly.board[position].get_pr();
+                    bank._Stock += monopoly.board[position].get_pr();
                     Console.WriteLine("Your money after paying: " + list[player_id].starting_money);
                     monopoly.board[position].set_p_o(list[player_id].name);
                     list[player_id].possession++;
@@ -362,7 +369,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
             int player_id = 0; //Player id initialization.
             int temp = 0; //Will be used to check if we pass the start again.
 
-            while(playing)
+            while (playing)
             {
                 //Check if player has lost.
                 player_id = eliminated(player_id, nb_players);
@@ -375,7 +382,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
                 }
 
                 //Check if the player is jailed, if true, propose action for this turn.
-                if(list[player_id].jailed)
+                if (list[player_id].jailed)
                 {
                     jail_actions(list[player_id]);
                 }
@@ -414,7 +421,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
                     {
                         list[player_id].time_in_jail_left--;
                     }
-                    else if(list[player_id].time_in_jail_left <= 0)
+                    else if (list[player_id].time_in_jail_left <= 0)
                     {
                         list[player_id].time_in_jail_left = 0;
                         list[player_id].jailed = false;
@@ -427,9 +434,9 @@ namespace Monopoly_SELMI_TRAN_DINH.Gameplay
                 Console.WriteLine("Press enter to end your turn.");
 
                 //If no more money, player has lost.
-                if(list[player_id].starting_money <= 0)
+                if (list[player_id].starting_money <= 0)
                 {
-                    if(is_eliminated(player_id))
+                    if (is_eliminated(player_id))
                     {
                         players_left--;
                         list[player_id].lost = true;

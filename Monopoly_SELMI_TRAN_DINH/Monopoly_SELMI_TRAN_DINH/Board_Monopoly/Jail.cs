@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Monopoly_SELMI_TRAN_DINH.Board_Monopoly
 {
-    public class Jail:Case
+    public class Jail : Case
     {
         //Position on the board.
         //Name of the land case.
@@ -9,7 +9,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Board_Monopoly
         //Count the number of turn left in jail
         private int count;
 
-        public Jail()
+        public Jail(int position, string name)
         {
             base.position = 10;
             base.name = "Jail";
@@ -26,7 +26,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Board_Monopoly
         public void road_to_freedom()
         {
             this.count--;
-            if(count == 0)
+            if (count == 0)
             {
                 base.name = ""; //Ingame, this equals to freedom, you can move again.
             }

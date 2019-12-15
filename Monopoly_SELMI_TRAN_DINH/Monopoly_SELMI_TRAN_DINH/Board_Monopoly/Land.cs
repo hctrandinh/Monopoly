@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Monopoly_SELMI_TRAN_DINH.Board_Monopoly
 {
-    public class Land:Case
+    public class Land : Case
     {
         //Position on the board.
         //Name of the land case.
@@ -9,7 +9,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Board_Monopoly
         //Property of x player.
         //Color of the case. Color = "Station" if Station case.
 
-    public Land(int pos, string nm, int pr, string col)
+        public Land(int pos, string nm, int pr, string col)
         {
             base.position = pos;
             base.name = nm;

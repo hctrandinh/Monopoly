@@ -1,9 +1,12 @@
 ﻿using System;
 using Monopoly_SELMI_TRAN_DINH.Cards;
 using Monopoly_SELMI_TRAN_DINH.Players;
+using Monopoly_SELMI_TRAN_DINH.Board_Monopoly;
+using System.IO;
+
 namespace Monopoly_SELMI_TRAN_DINH.Cards
 {
-    public class Chance
+    public class Chance //: Case
     {
         Random rand = new Random();
         //Name of the land case.
@@ -12,6 +15,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Cards
         private string[] card_desc { get; set; }
         //Card id will be used in game to refer to a specific action.
         private int[] card_id { get; set; }
+        string dir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
 
         public Chance()
         {
@@ -26,8 +30,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Cards
             string line;
             int pos = 0;
             // Read the file and display it line by line.  
-            System.IO.StreamReader file =
-                new System.IO.StreamReader("/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Chance.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(dir + "/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Chance.txt");
             while ((line = file.ReadLine()) != null)
             {
                 this.card_desc[pos] = line;
@@ -46,8 +49,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Cards
             string line;
             int pos = 0;
             // Read the file and display it line by line.  
-            System.IO.StreamReader file =
-                new System.IO.StreamReader("/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Chance_actions.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(dir + "/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Chance_actions.txt");
             while ((line = file.ReadLine()) != null && pos != id)
             {
                 pos++;
@@ -60,7 +62,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Cards
         public void card_action(Player player, Player[] list, int action, int value = -5)
         {
             if (action == 1) { move(player, value); }
-            else if(action == 2) { move_one(player); }
+            else if (action == 2) { move_one(player); }
             else if (action == 3) { nearest_railroad(player); }
             else if (action == 4) { change_money(player, value); }
             else if (action == 5) { get_free_card(player); }
@@ -71,7 +73,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Cards
         public void move(Player player, int position)
         {
             player.position_number = position;
-            if(player.position_number == 10)
+            if (player.position_number == 10)
             {
                 player.jailed = true;
                 player.time_in_jail_left = 3;
@@ -85,7 +87,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Cards
 
         public void nearest_railroad(Player player)
         {
-            while(player.position_number != 5 && player.position_number != 15
+            while (player.position_number != 5 && player.position_number != 15
                 && player.position_number != 155 && player.position_number != 25)
             {
                 player.position_number += 1;
@@ -109,9 +111,9 @@ namespace Monopoly_SELMI_TRAN_DINH.Cards
 
         public void pay_all(Player player, Player[] list)
         {
-            foreach(Player element in list)
+            foreach (Player element in list)
             {
-                if(!element.lost && element.name != player.name)
+                if (!element.lost && element.name != player.name)
                 {
                     player.starting_money -= 50;
                     element.starting_money += 50;

@@ -1,9 +1,12 @@
 ﻿using System;
 using Monopoly_SELMI_TRAN_DINH.Cards;
 using Monopoly_SELMI_TRAN_DINH.Players;
+using Monopoly_SELMI_TRAN_DINH.Board_Monopoly;
+using System.IO;
+
 namespace Monopoly_SELMI_TRAN_DINH.Cards
 {
-    public class Community
+    public class Community //: Case
     {
         Random rand = new Random();
         //Name of the land case.
@@ -12,6 +15,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Cards
         private string[] card_desc { get; set; }
         //Card id will be used in game to refer to a specific action.
         private int[] card_id { get; set; }
+        string dir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
 
         public Community()
         {
@@ -26,8 +30,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Cards
             string line;
             int pos = 0;
             // Read the file and display it line by line.  
-            System.IO.StreamReader file =
-                new System.IO.StreamReader("/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Community.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(dir + "/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Community.txt");
             while ((line = file.ReadLine()) != null)
             {
                 this.card_desc[pos] = line;
@@ -46,8 +49,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Cards
             string line;
             int pos = 0;
             // Read the file and display it line by line.  
-            System.IO.StreamReader file =
-                new System.IO.StreamReader("/Users/huan/Projects/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Community_actions.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(dir + "/Monopoly_SELMI_TRAN_DINH/Monopoly_SELMI_TRAN_DINH/bin/Debug/Community_actions.txt");
             while ((line = file.ReadLine()) != null && pos != id)
             {
                 pos++;

@@ -1,6 +1,0 @@
-C:\Users\othma\Documents\Visual Studio 2015\Projects\ProgS1\Monopoly_SELMI_TRAN_DINH\Monopoly_SELMI_TRAN_DINH\bin\Debug\Monopoly_SELMI_TRAN_DINH.exe.config
-C:\Users\othma\Documents\Visual Studio 2015\Projects\ProgS1\Monopoly_SELMI_TRAN_DINH\Monopoly_SELMI_TRAN_DINH\obj\Debug\Monopoly_SELMI_TRAN_DINH.csprojResolveAssemblyReference.cache
-C:\Users\othma\Documents\Visual Studio 2015\Projects\ProgS1\Monopoly_SELMI_TRAN_DINH\Monopoly_SELMI_TRAN_DINH\bin\Debug\Monopoly_SELMI_TRAN_DINH.exe
-C:\Users\othma\Documents\Visual Studio 2015\Projects\ProgS1\Monopoly_SELMI_TRAN_DINH\Monopoly_SELMI_TRAN_DINH\bin\Debug\Monopoly_SELMI_TRAN_DINH.pdb
-C:\Users\othma\Documents\Visual Studio 2015\Projects\ProgS1\Monopoly_SELMI_TRAN_DINH\Monopoly_SELMI_TRAN_DINH\obj\Debug\Monopoly_SELMI_TRAN_DINH.exe
-C:\Users\othma\Documents\Visual Studio 2015\Projects\ProgS1\Monopoly_SELMI_TRAN_DINH\Monopoly_SELMI_TRAN_DINH\obj\Debug\Monopoly_SELMI_TRAN_DINH.pdb

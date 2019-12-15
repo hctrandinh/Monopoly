@@ -33,7 +33,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Players
         {
             Console.WriteLine("Please enter your name: ");
             string res = "";
-            while(res == "")
+            while (res == "")
             {
                 res = Console.ReadLine();
             }

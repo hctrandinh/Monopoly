@@ -18,7 +18,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Dices
         {
             dices[0].value = rand.Next(1, 7);
             dices[1].value = rand.Next(1, 7);
-            if(dices[0].check_value() && dices[1].check_value())
+            if (dices[0].check_value() && dices[1].check_value())
             {
                 return dices;
             }

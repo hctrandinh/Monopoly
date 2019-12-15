@@ -24,7 +24,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Players
 
             //No list_copy = list because they will get the same reference.
             this.list_copy = new int[8];
-            foreach(int element in list)
+            foreach (int element in list)
             {
                 list_copy[element - 1] = element;
             }
@@ -40,7 +40,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Players
         /// <returns>True if disponible, false if not.</returns>
         public bool check_disponibility(int choice)
         {
-            if(list[choice - 1] == choice)
+            if (list[choice - 1] == choice)
             {
                 return true;
             }
@@ -54,9 +54,9 @@ namespace Monopoly_SELMI_TRAN_DINH.Players
         public string choose_token()
         {
             Console.WriteLine("Choose one disponible token:");
-            foreach(int element in list_copy)
+            foreach (int element in list_copy)
             {
-                if(check_disponibility(element))
+                if (check_disponibility(element))
                 {
                     Console.WriteLine(element + ": " + tokens_name[element - 1]);
                 }
@@ -64,7 +64,7 @@ namespace Monopoly_SELMI_TRAN_DINH.Players
             Console.Write("Choice: ");
             int choice = int.Parse(Console.ReadLine());
             Console.WriteLine("\n");
-            while(choice < 1 || choice > 8 || !check_disponibility(choice))
+            while (choice < 1 || choice > 8 || !check_disponibility(choice))
             {
                 Console.WriteLine("Not disponible. Please choose again.");
                 Console.Write("Choice: ");

@@ -8,6 +8,10 @@ namespace Monopoly_SELMI_TRAN_DINH.Board_Monopoly
         protected int price { get; set; }
         protected string property_of { get; set; }
         protected string color { get; set; }
+        public Case GetCase()
+        {
+            return this;
+        }
 
         public Case()
         {
